@@ -5,6 +5,7 @@ description = "Chic Interiors Flask website deployed on Cloudflare Python Worker
 requires-python = ">=3.12"
 dependencies = [
     "Flask==3.1.2",
+    "python-dotenv==1.1.1",
 ]
 
 [dependency-groups]
