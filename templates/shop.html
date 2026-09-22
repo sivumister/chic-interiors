@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Shop & Catalog | Chic Interiors{% endblock %}
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-4">
+    <span class="eyebrow">Catalog</span>
+    <div class="row align-items-end g-4">
+      <div class="col-lg-8"><h1 class="display-4 section-title mb-0">Curtains, blinds & finishing touches</h1></div>
+      <div class="col-lg-4"><p class="text-secondary mb-0">Browse the collection. Items without a fixed price are made-to-measure and can be quoted from your measurements.</p></div>
+    </div>
+  </div>
+</section>
+<section class="pb-5">
+  <div class="container">
+    <div class="d-flex flex-wrap gap-2 mb-4" id="categoryFilters">
+      <button class="btn btn-dark rounded-pill category-filter active" data-filter="all">All</button>
+      {% for category in categories %}<button class="btn btn-outline-dark rounded-pill category-filter" data-filter="{{ category|lower }}">{{ category }}</button>{% endfor %}
+    </div>
+    <div class="row g-4" id="productGrid">
+      {% for product in products %}
+      <div class="col-6 col-lg-4 product-col" data-category="{{ product.category|lower }}">
+        <article class="product-card h-100">
+          <a href="{{ url_for('product_detail', slug=product.slug) }}" class="product-image-wrap"><img src="{{ url_for('static', filename='img/' ~ product.image) }}" class="product-image" alt="{{ product.name }}"></a>
+          <div class="p-3 p-md-4">
+            <div class="small text-uppercase text-secondary fw-semibold">{{ product.category }}</div>
+            <h2 class="h5 mt-1"><a href="{{ url_for('product_detail', slug=product.slug) }}">{{ product.name }}</a></h2>
+            <p class="text-secondary small product-description">{{ product.description }}</p>
+            <div class="d-flex justify-content-between align-items-center gap-2">
+              <span class="fw-bold">{{ product.price_label }}</span>
+              {% if product.purchasable %}
+              <form method="post" action="{{ url_for('add_to_cart', slug=product.slug) }}"><button class="btn btn-dark rounded-pill btn-sm px-3" type="submit"><i class="bi bi-bag-plus me-1"></i>Add</button></form>
+              {% else %}
+              <a class="btn btn-outline-dark rounded-pill btn-sm px-3" href="{{ url_for('quote', product=product.slug) }}">Quote</a>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

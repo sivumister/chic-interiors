@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block title %}Order Received | Chic Interiors{% endblock %}
+{% block content %}
+<section class="py-5 bg-cream"><div class="container py-lg-5"><div class="success-card mx-auto text-center"><div class="success-icon"><i class="bi bi-check2"></i></div><span class="eyebrow">Order received</span><h1 class="display-5 section-title mt-2">Thank you for your order.</h1><p class="lead text-secondary">Your reference is <strong>{{ order_number }}</strong>.</p><p>Order total: <strong>US${{ '%.2f'|format(total) }}</strong></p><p class="text-secondary">Chic Interiors will contact you to confirm availability, payment and delivery or installation details.</p><div class="d-flex flex-wrap justify-content-center gap-3 mt-4"><a class="btn btn-success rounded-pill px-4" href="{{ business.whatsapp }}" target="_blank"><i class="bi bi-whatsapp me-2"></i>Message us</a><a class="btn btn-outline-dark rounded-pill px-4" href="{{ url_for('shop') }}">Continue browsing</a></div></div></div></section>
+{% endblock %}

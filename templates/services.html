@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Services | Chic Interiors{% endblock %}
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-4 text-center"><span class="eyebrow">Our services</span><h1 class="display-4 section-title mx-auto mt-2" style="max-width:850px">Everything you need to finish your windows beautifully</h1></div>
+</section>
+<section class="pb-5">
+  <div class="container">
+    {% set service_rows = [
+      ('Curtains & sheers','Ready-to-hang, lace, jacquard, linen, blockout and premier wave curtains in colours and finishes suited to your room.','client-curtains.jpg','bi-window'),
+      ('Blinds','Roller blinds and custom window-covering options for privacy, sun control and clean modern lines.','roller-blinds.jpg','bi-layout-text-window-reverse'),
+      ('Motorised tracks','Motorised curtain tracks and wave systems for convenient, contemporary interiors.','motorised.jpg','bi-lightning-charge'),
+      ('Tracks, rods & accessories','Wave tracks, rods, rings, tiebacks and finishing hardware to complement the fabric and room style.','hardware.jpg','bi-tools')
+    ] %}
+    {% for title, text, image, icon in service_rows %}
+    <div class="row g-5 align-items-center py-5 {% if loop.index is even %}flex-lg-row-reverse{% endif %}">
+      <div class="col-lg-6"><img src="{{ url_for('static', filename='img/' ~ image) }}" class="img-fluid rounded-4 service-photo" alt="{{ title }}"></div>
+      <div class="col-lg-6"><div class="service-icon mb-3"><i class="bi {{ icon }}"></i></div><h2 class="section-title">{{ title }}</h2><p class="lead text-secondary">{{ text }}</p><a class="btn btn-outline-dark rounded-pill px-4" href="{{ url_for('quote') }}">Get a quote</a></div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<section class="py-5 bg-dark text-white">
+  <div class="container py-lg-4">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-5"><span class="eyebrow text-gold">How it works</span><h2 class="section-title text-white mt-2">A simple four-step process</h2></div>
+      <div class="col-lg-7">
+        <div class="row g-3">
+          {% for n,t in [('01','Tell us about your room'),('02','Measure or schedule a visit'),('03','Choose fabric & hardware'),('04','Confirm, create & install')] %}
+          <div class="col-sm-6"><div class="process-card"><strong>{{ n }}</strong><span>{{ t }}</span></div></div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

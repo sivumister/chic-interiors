@@ -1,0 +1,7 @@
+# Local Cloudflare Worker development only. Copy to .dev.vars and never commit it.
+SECRET_KEY=replace-with-a-long-random-secret
+ADMIN_PASSWORD=replace-with-a-strong-password
+BUSINESS_EMAIL=ssivuse@gmail.com
+
+# Only needed after Cloudflare Email Sending is configured for your domain.
+MAIL_FROM=orders@your-domain.example

@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block title %}Admin Login | Chic Interiors{% endblock %}
+{% block content %}<section class="py-5 bg-cream"><div class="container py-5"><div class="form-panel mx-auto" style="max-width:520px"><h1 class="h2 section-title">Admin login</h1>{% if not configured %}<div class="alert alert-warning">Set <code>ADMIN_PASSWORD</code> in your <code>.env</code> file first.</div>{% endif %}<form method="post"><label class="form-label">Password</label><input class="form-control" type="password" name="password" required><button class="btn btn-dark rounded-pill px-4 mt-3" type="submit">Sign in</button></form></div></div></section>{% endblock %}

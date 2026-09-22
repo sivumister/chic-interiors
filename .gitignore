@@ -1,0 +1,20 @@
+# Python/local Flask
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+instance/*.db
+
+# Cloudflare Workers
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+python_modules/
+node_modules/
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/

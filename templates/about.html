@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}About | Chic Interiors{% endblock %}
+{% block content %}
+<section class="page-hero py-5"><div class="container py-4"><div class="row g-5 align-items-center"><div class="col-lg-6"><span class="eyebrow">About Chic Interiors</span><h1 class="display-4 section-title mt-2">Comfort and lifestyle, curated beautifully.</h1><p class="lead text-secondary">Chic Interiors provides premium fabrics, blinds, wallpaper, motorised tracks, rods and timeless interior finishing with consultation-to-installation service.</p><p class="text-secondary">The focus is simple: help each client create a polished space that feels comfortable, personal and complete.</p><a class="btn btn-dark rounded-pill px-4" href="{{ url_for('quote') }}">Work with us</a></div><div class="col-lg-6"><img src="{{ url_for('static', filename='img/hero-curtains.jpg') }}" class="img-fluid rounded-4 shadow-sm about-image" alt="Chic Interiors curtains"></div></div></div></section>
+<section class="py-5"><div class="container"><div class="row g-4 text-center">
+  {% for icon,title,text in [('bi-stars','Timeless style','Neutral, bold and premium finishes selected to suit your room.'),('bi-rulers','Made to measure','Solutions tailored to your windows, measurements and functional needs.'),('bi-tools','End-to-end service','From consultation and product selection through to fitting and installation.') ] %}<div class="col-md-4"><div class="service-card h-100"><div class="service-icon mx-auto"><i class="bi {{ icon }}"></i></div><h3 class="h5">{{ title }}</h3><p class="text-secondary mb-0">{{ text }}</p></div></div>{% endfor %}
+</div></div></section>
+{% endblock %}

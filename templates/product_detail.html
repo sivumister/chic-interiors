@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }} | Chic Interiors{% endblock %}
+{% block content %}
+<section class="py-5 bg-cream">
+  <div class="container py-lg-4">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6"><img src="{{ url_for('static', filename='img/' ~ product.image) }}" class="img-fluid rounded-4 shadow-sm detail-image" alt="{{ product.name }}"></div>
+      <div class="col-lg-6">
+        <a href="{{ url_for('shop') }}" class="small text-link"><i class="bi bi-arrow-left me-1"></i>Back to catalog</a>
+        <div class="text-uppercase small text-secondary fw-semibold mt-4">{{ product.category }}</div>
+        <h1 class="display-4 section-title mt-1">{{ product.name }}</h1>
+        <p class="lead text-secondary">{{ product.description }}</p>
+        <div class="h4 my-4">{{ product.price_label }}</div>
+        {% if product.purchasable %}
+        <form class="d-flex gap-2 align-items-center" method="post" action="{{ url_for('add_to_cart', slug=product.slug) }}">
+          <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="20" aria-label="Quantity">
+          <button class="btn btn-dark btn-lg rounded-pill px-4" type="submit"><i class="bi bi-bag-plus me-2"></i>Add to cart</button>
+        </form>
+        {% else %}
+        <a class="btn btn-dark btn-lg rounded-pill px-4" href="{{ url_for('quote', product=product.slug) }}">Request a quote</a>
+        {% endif %}
+        <div class="border-top mt-5 pt-4">
+          <div class="row g-3 small">
+            <div class="col-6"><i class="bi bi-rulers me-2"></i>Made-to-measure options</div>
+            <div class="col-6"><i class="bi bi-tools me-2"></i>Installation available</div>
+            <div class="col-6"><i class="bi bi-whatsapp me-2"></i>WhatsApp consultation</div>
+            <div class="col-6"><i class="bi bi-house-heart me-2"></i>Harare service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% if related %}
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title h1 mb-4">You may also like</h2>
+    <div class="row g-4">
+      {% for p in related %}
+      <div class="col-md-4"><a class="mini-product" href="{{ url_for('product_detail', slug=p.slug) }}"><img src="{{ url_for('static', filename='img/' ~ p.image) }}" alt="{{ p.name }}"><div><strong>{{ p.name }}</strong><span>{{ p.price_label }}</span></div></a></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

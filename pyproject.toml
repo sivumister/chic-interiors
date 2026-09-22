@@ -1,0 +1,14 @@
+[project]
+name = "chic-interiors-cloudflare"
+version = "1.0.0"
+description = "Chic Interiors Flask website deployed on Cloudflare Python Workers"
+requires-python = ">=3.12"
+dependencies = [
+    "Flask==3.1.2",
+]
+
+[dependency-groups]
+dev = [
+    "workers-py>=1.72.0",
+    "workers-runtime-sdk",
+]

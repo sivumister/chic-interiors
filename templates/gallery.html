@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Gallery | Chic Interiors{% endblock %}
+{% block content %}
+<section class="page-hero py-5"><div class="container py-4"><span class="eyebrow">Happy client diaries</span><h1 class="display-4 section-title">Ideas for your next space</h1><p class="lead text-secondary">A visual collection based on the Chic Interiors catalog shared with us.</p></div></section>
+<section class="pb-5"><div class="container"><div class="gallery-grid">
+  {% for product in products %}<a href="{{ url_for('product_detail', slug=product.slug) }}" class="gallery-item"><img src="{{ url_for('static', filename='img/' ~ product.image) }}" alt="{{ product.name }}"><div class="gallery-caption"><strong>{{ product.name }}</strong><span>{{ product.category }}</span></div></a>{% endfor %}
+</div></div></section>
+{% endblock %}
